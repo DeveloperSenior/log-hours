@@ -96,11 +96,12 @@ DATABASES = {
     }
 }
 ```
-* Finalmente se levanta el servidor Django
+* Finalmente se levanta el servidor Django existen 2 opciones.
+
 1. Borrando el modelo de datos y migrándolo totalmente desde cero 
    
-    (**NOTA:** Este comando borra las tablas por completo tenga en cuenta que si no es la 
-    primera vez que se ejecuta sera borrada toda la información)
+     (**NOTA:** Este comando borra las tablas por completo tenga en cuenta que si no es la 
+     primera vez que se ejecuta sera borrada toda la información)
 ```
 # Linux - Unix - MacOS
 
