@@ -99,7 +99,7 @@ python3.9 manage.py migrate
 * Crear Super Usuario que administrara todo el sistema.
   
   **NOTA:** Tener cuidado que es un usuario ROOT del sistema y tiene acceso
-   a todo.
+   a todo, `Esta información es almacenada en la base de datos`
 ```
 # Linux - Unix - MacOS - Windows
 
@@ -127,7 +127,8 @@ Superuser created successfully.
 1. Borrando el modelo de datos y migrándolo totalmente desde cero 
    
      (**NOTA:** Este comando borra las tablas por completo tenga en cuenta que si no es la 
-     primera vez que se ejecuta sera borrada toda la información)
+     primera vez que se ejecuta será borrada toda la información y tocara ejecutar el paso
+     de la `creación del superusuario`)
 ```
 # Linux - Unix - MacOS
 
