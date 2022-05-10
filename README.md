@@ -85,7 +85,17 @@ DATABASES = {
     }
 }
 ```
+* Migrar el modelo de datos de `Django`y `LogHours`
+```
+# Linux - Unix - MacOS - Windows
 
+python manage.py migrate
+```
+```
+# Linux - Unix - MacOS - Windows
+
+python3.9 manage.py migrate
+```
 * Crear Super Usuario que administrara todo el sistema.
   
   **NOTA:** Tener cuidado que es un usuario ROOT del sistema y tiene acceso
