@@ -29,10 +29,10 @@ Linux - Unix - MacOS - Windows
 
 git clone https://github.com/DeveloperSenior/log-hours.git
 ```
-* Se ingresa a la carpeta raíz del proyecto `LogHours`.
+* Se ingresa a la carpeta clonada `log-hours` luego a la raíz del proyecto `LogHours`.
 ```
 Linux - Unix - MacOS - Windows
-
+cd log-hours
 cd LogHours
 ```
 * Se virtualiza el proyecto para el intérprete `Python` en `venv`.
@@ -49,6 +49,20 @@ Linux - Unix - MacOS - Windows
 python3.9 -m venv env
 source env/bin/activate
 ```
+
+```
+Windows
+
+python -m venv env
+env/Scripts/activate
+```
+o
+```
+Windows
+
+python3.9 -m venv env
+env/Scripts/activate
+```
 **NOTA**: Tener en cuenta que en PyCharm se debe configurar el interpreter de Python (Pero eso se sale del alcance de este documento).
 * Se ejecuta `script` para instalar dependencias del proyecto.
 ```
@@ -56,6 +70,22 @@ source env/bin/activate
 
 pip install -r requirements.txt
 ```
+* Revisar el archivo de configuración `LogHours/settings.py` para configurar la Base de datos PostgrSQL.
+ 
+ **NOTA:** Se tiene una configuración por defecto.
+```
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': '<NOMBRE_BD>',
+        'USER': '<USUARIO_BD>',
+        'PASSWORD': '<PASSWORD_BD>',
+        'HOST': '<HOST_BD>',
+        'PORT': '<PORT_BD>',
+    }
+}
+```
+
 * Crear Super Usuario que administrara todo el sistema.
   
   **NOTA:** Tener cuidado que es un usuario ROOT del sistema y tiene acceso
@@ -81,21 +111,7 @@ Password:
 Password (again):
 Superuser created successfully.
 ```
-* Revisar el archivo de configuración `LogHours/settings.py` para configurar la Base de datos PostgrSQL.
- 
- **NOTA:** Se tiene una configuración por defecto.
-```
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': '<NOMBRE_BD>',
-        'USER': '<USUARIO_BD>',
-        'PASSWORD': '<PASSWORD_BD>',
-        'HOST': '<HOST_BD>',
-        'PORT': '<PORT_BD>',
-    }
-}
-```
+
 * Finalmente se levanta el servidor Django existen 2 opciones.
 
 1. Borrando el modelo de datos y migrándolo totalmente desde cero 
