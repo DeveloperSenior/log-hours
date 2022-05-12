@@ -1,7 +1,29 @@
 from django.contrib import admin
+import csv
+from django.http import HttpResponse
 
 # Register your models here.
-from LogHoursApp.models import Enterprises, Charges, Projects, Statuses, LogHours, Priority
+from LogHoursApp.models import Enterprises, Charges, Projects, Statuses, LogHours, Priorities, ChargesUser, \
+    EnterprisesUser
+
+
+class ExportCsv:
+    def export_as_csv(self, request, queryset):
+
+        meta = self.model._meta
+        field_names = [field.name for field in meta.fields]
+
+        response = HttpResponse(content_type='text/csv')
+        response['Content-Disposition'] = 'attachment; filename={}.csv'.format(meta)
+        writer = csv.writer(response)
+
+        writer.writerow(field_names)
+        for obj in queryset:
+            row = writer.writerow([getattr(obj, field) for field in field_names])
+
+        return response
+
+    export_as_csv.short_description = "Exportar selección (CSV)"
 
 
 @admin.register(Enterprises)
@@ -49,17 +71,17 @@ class ProjectsAdmin(admin.ModelAdmin):
     description.short_description = 'Nombre Proyecto'
 
     def owner(self, obj):
-        return obj.dsOwner
+        return obj.owner
 
     owner.short_description = 'Dueño Proyecto'
 
     def priority(self, obj):
-        return obj.dsPriority
+        return obj.priority
 
     priority.short_description = 'Prioridad'
 
     def status(self, obj):
-        return obj.idStatus
+        return obj.status
 
     status.short_description = 'Estado'
 
@@ -79,8 +101,8 @@ class StatusesAdmin(admin.ModelAdmin):
     description.short_description = 'Estado'
 
 
-@admin.register(Priority)
-class StatusesAdmin(admin.ModelAdmin):
+@admin.register(Priorities)
+class PrioritiesAdmin(admin.ModelAdmin):
     list_display = ("id", "description")
 
     def id(self, obj):
@@ -95,8 +117,8 @@ class StatusesAdmin(admin.ModelAdmin):
 
 
 @admin.register(LogHours)
-class LogHoursAdmin(admin.ModelAdmin):
-    list_display = ("id", "description", "priority", "business_hour", "not_business_hour","date_hour")
+class LogHoursAdmin(admin.ModelAdmin, ExportCsv):
+    list_display = ("id", "description", "project", "priority", "business_hour", "not_business_hour", "date_hour")
 
     def id(self, obj):
         return obj.id
@@ -107,6 +129,11 @@ class LogHoursAdmin(admin.ModelAdmin):
         return obj.dsActivity
 
     description.short_description = 'Actividad'
+
+    def project(self, obj):
+        return obj.project
+
+    project.short_description = 'Proyecto'
 
     def priority(self, obj):
         return obj.dsPriority
@@ -128,3 +155,44 @@ class LogHoursAdmin(admin.ModelAdmin):
 
     date_hour.short_description = 'Fecha registro'
 
+    actions = ["export_as_csv"]
+
+
+@admin.register(ChargesUser)
+class ChargesUserAdmin(admin.ModelAdmin):
+    list_display = ("id", "user", "charge")
+
+    def id(self, obj):
+        return obj.id
+
+    id.short_description = 'ID'
+
+    def user(self, obj):
+        return obj.user
+
+    user.short_description = 'Usuario'
+
+    def charge(self, obj):
+        return obj.charge
+
+    charge.short_description = 'Cargo'
+
+
+@admin.register(EnterprisesUser)
+class EnterprisesUserAdmin(admin.ModelAdmin):
+    list_display = ("id", "user", "enterprise")
+
+    def id(self, obj):
+        return obj.id
+
+    id.short_description = 'ID'
+
+    def user(self, obj):
+        return obj.user
+
+    user.short_description = 'Usuario'
+
+    def enterprise(self, obj):
+        return obj.enterprise
+
+    enterprise.short_description = 'Empresa'

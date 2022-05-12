@@ -43,10 +43,10 @@ class Statuses(models.Model):
         verbose_name_plural = "Estados"
 
 
-class Priority(models.Model):
+class Priorities(models.Model):
     id = models.AutoField(primary_key=True)
     dsNamePriority = models.CharField(max_length=10, verbose_name="Prioridad",
-                                    help_text="Ingrese nombre de la prioridad máximo 10 caracteres")
+                                      help_text="Ingrese nombre de la prioridad máximo 10 caracteres")
 
     def __str__(self):
         return self.dsNamePriority
@@ -60,11 +60,12 @@ class Projects(models.Model):
     id = models.AutoField(primary_key=True)
     dsNameProject = models.CharField(max_length=45, verbose_name="Nombre Proyecto",
                                      help_text="Ingrese nombre del proyecto máximo 45 caracteres")
-    dsOwner = models.CharField(max_length=45, verbose_name="Dueño Proyecto",
-                               help_text="Ingrese dueño del proyecto máximo 45 caracteres")
-    dsPriority = models.CharField(max_length=45, verbose_name="Prioridad",
-                                  help_text="Ingrese prioridad del proyecto máximo 45 caracteres")
-    idStatus = models.OneToOneField(Statuses, on_delete=models.CASCADE)
+    owner = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name="Dueño Proyecto")
+    priority = models.ForeignKey(Priorities, on_delete=models.CASCADE, verbose_name="Prioridad")
+    status = models.OneToOneField(Statuses, on_delete=models.CASCADE, verbose_name="Estado")
+
+    def __str__(self):
+        return self.dsNameProject
 
     class Meta:
         verbose_name = "Proyecto"
@@ -75,11 +76,12 @@ class LogHours(models.Model):
     id = models.AutoField(primary_key=True)
     dsActivity = models.CharField(max_length=200, verbose_name="Actividad",
                                   help_text="Actividad realizada máximo 200 caracteres")
-    dsPriority = models.ForeignKey(Priority, on_delete=models.CASCADE, verbose_name="Prioridad")
+    priority = models.ForeignKey(Priorities, on_delete=models.CASCADE, verbose_name="Prioridad")
     nmBusinessHour = models.DecimalField(max_digits=8, decimal_places=2, verbose_name="Hora laboral",
                                          help_text="Ingrese hora laboral maximo 8 caracteres")
     nmNoBusinessHour = models.DecimalField(max_digits=8, decimal_places=2, verbose_name="Hora no laboral",
                                            help_text="Ingrese hora no laboral maximo 8 caracteres")
+    project = models.ForeignKey(Projects, on_delete=models.CASCADE, verbose_name="Proyecto")
     author = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name="Usuario")
     date = models.DateTimeField(auto_now=True, blank=True, verbose_name="Fecha registro",
                                 help_text="Ingresa la fecha de registro/actualización")
@@ -87,3 +89,23 @@ class LogHours(models.Model):
     class Meta:
         verbose_name = "Resgistro de horas"
         verbose_name_plural = "Resgistro de horas"
+
+
+class ChargesUser(models.Model):
+    id = models.AutoField(primary_key=True)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name="Usuario")
+    charge = models.ForeignKey(Charges, on_delete=models.CASCADE, verbose_name="Cargo")
+
+    class Meta:
+        verbose_name = "Cargo por usuario"
+        verbose_name_plural = "Cargos por usuarios"
+
+
+class EnterprisesUser(models.Model):
+    id = models.AutoField(primary_key=True)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name="Usuario")
+    enterprise = models.ForeignKey(Enterprises, on_delete=models.CASCADE, verbose_name="Empresa")
+
+    class Meta:
+        verbose_name = "Empresa por usuario"
+        verbose_name_plural = "Empresas por usuarios"
