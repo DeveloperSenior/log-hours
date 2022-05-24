@@ -119,7 +119,7 @@ TIME_ZONE = 'America/Bogota'
 
 USE_I18N = True
 
-USE_TZ = True
+USE_TZ = False
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
@@ -134,3 +134,6 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # sweetify
 # possible options: 'sweetalert', 'sweetalert2' - default is 'sweetalert2'
 SWEETIFY_SWEETALERT_LIBRARY = 'sweetalert2'
+
+FILE_UPLOAD_HANDLERS = ("django_excel.ExcelMemoryFileUploadHandler",
+                        "django_excel.TemporaryExcelFileUploadHandler")

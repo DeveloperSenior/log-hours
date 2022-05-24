@@ -1,9 +1,9 @@
-# **log-hours app v1.0.0**
+# **log-hours app v1.1.0**
 Aplicación que administra el Registro de horas
 de un proyecto como apoyo a la gestión del mismo. Este es
 el repositorio [log-hours](https://github.com/DeveloperSenior/log-hours.git).
 
-#Dependencias
+## Dependencias
 
 1. [Git v2.36.+](https://git-scm.com/downloads).
 2. [Python v3.9](https://www.python.org/downloads/).
@@ -19,7 +19,7 @@ el repositorio [log-hours](https://github.com/DeveloperSenior/log-hours.git).
 8. Terminal UNIX o DOS para ejecutar `script` puede ser la que tiene el sistema operativo o un emulador
    de consola [Cmder](https://cmder.net).
 
-#Instalación
+## Instalación
 
 * Se debe clonar el repositorio. 
   abrir la terminal `shell` o `cmd` ingrese el siguiente
@@ -161,5 +161,13 @@ Starting development server at http://127.0.0.1:8000/
 * Para administrar los maestros, usuarios y grupos ingresar a `http://127.0.0.1:8000/admin/` con las credenciales
  del `superusuario` anteriormente creado.
 
-#Instalación en un contenedor DOCKER
+## Instalación en un contenedor DOCKER
 Tenga en cuenta el archivo `Dockerfile` para crear la imagen de la app
+
+## Uso de archivo masivo
+Utilizar la plantilla `registro-masivo-example.xls` o `registro-masivo-example.xlsx` NOTA: Tenga en cuenta los comentarios de las columnas delos archivos.
+
+En el formulario de creación
+`http://127.0.0.1:8000/log` utilizar el botón `+CARGAR ARCHIVO`
+
+![img.png](img.png)

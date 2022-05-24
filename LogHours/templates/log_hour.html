@@ -1,15 +1,20 @@
 {% extends 'base.html' %}
 {% block title %}Registro de horas{% endblock %}
 {% block content %}
-    <div class="container p-3 p-lg-3 p-md-3 p-sm-3 p-xl-3 ">
-        <div class="card text-center p-3 p-md-3 p-sm-3 p-xl-3">
-            <h2 class="card-header">Registrar horas</h2>
-        <div  class="m-2 align-self-end"><a href="/log/show" class="btn btn-info"><i class="fa-solid fa-eye fa-1x" title="Ver mis registros"></i></a></div>
+    <div class=" container p-3 p-lg-3 p-md-3 p-sm-3 p-xl-3">
+        <div class="card bg-dark text-center p-3 p-md-3 p-sm-3 p-xl-3">
+            <h1 class="card-header font-weight-bold">Registrar horas</h1>
+            <div class="m-2 align-self-end">
+                <a href="/log/show" class="btn btn-info text-white m-1">
+                    <i class="fa-solid fa-eye fa-1x" title="Ver mis registros"></i>
+                </a>
+
+            </div>
             <div class="card-body justify-content-center">
                 <form method="POST" class="post-form">
                     {% csrf_token %}
                     <div class="form-group row m-1">
-                        {% if form.id%}
+                        {% if form.id %}
                             <div class="col  p-1 m-1">
                                 <label class="form-label" for="id">Id:</label>
                                 <div class="" id="id">
@@ -17,6 +22,12 @@
                                 </div>
                             </div>
                         {% endif %}
+                        <div class="col p-1 m-1">
+                            <label class="form-label" for="date">Fecha registro:</label>
+                            <div class="m-1" id="date">
+                                {{ form.date }}
+                            </div>
+                        </div>
                         <div class="col p-1 m-1">
                             <label class="form-label" for="dsActivity">Actividad:</label>
                             <div class="m-1" id="dsActivity">
@@ -53,7 +64,9 @@
                     </div>
                     <div class="col p-1 m-1">
                         <div class="m1">
-                            <button type="submit" class="btn btn-primary me-3">Registrar</button>
+                            <button type="submit" class="btn btn-primary text-white m-1">Registrar</button>
+                            <a href="/log/import" class="btn btn-dark text-white m-1"
+                   title="Cargar archivo">+ Cargar archivo</a>
                         </div>
                     </div>
                 </form>

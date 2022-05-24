@@ -27,7 +27,15 @@
     <!-- Regular MDB theme -->
     <!-- <link rel="stylesheet" href="css/mdb.min.css" /> -->
 
+
+    <script type="text/javascript" src="/admin/jsi18n/"></script>
+    <script type="text/javascript" src="{% static 'admin/js/core.js' %}"></script>
+    <script type="text/javascript" src="{% static 'admin/js/vendor/jquery/jquery.js' %}"></script>
+    <script type="text/javascript" src="{% static 'admin/js/jquery.init.js' %}"></script>
+    {{ form.media }}
     <link rel="stylesheet" href="{% static 'css/style.css' %}"/>
+    <link rel="stylesheet" type="text/css" href="{% static 'admin/css/base.css' %}"/>
+    <link rel="stylesheet" type="text/css" href="{% static 'admin/css/widgets.css' %}"/>
 
 
 </head>
@@ -69,24 +77,24 @@
 
 
             <div class="d-flex align-items-center">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <div class="navbar-nav me-auto mb-2 mb-lg-0 user-tools">
                     {% if user.is_authenticated %}
-                        <li class="nav-item">
+                        <div class="nav-item">
                             <a
                                     class="nav-link btn btn-link px-3 me-2"
                                     role="button"
                                     href="/admin">
                                 <i class="fa-solid fa-screwdriver-wrench fa-2x"></i> Administrar</a>
-                        </li>
-                        <li class="nav-item">
+                        </div>
+                        <div class="nav-item">
                             <a
                                     class="nav-link btn btn-link px-3 me-2"
                                     role="button"
                             ><i class="fa-solid fa-user fa-2x"></i
                             > + {{ user.username }} </a>
-                        </li>
+                        </div>
                         <!-- Navbar dropdown -->
-                        <li class="nav-item dropdown">
+                        <div class="nav-item dropdown">
                             <a
                                     class="nav-link dropdown-toggle px-3 me-2"
                                     href="#"
@@ -98,7 +106,7 @@
                                 Menú
                             </a>
                             <!-- Dropdown menu -->
-                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <div class=" dropdown-menu" aria-labelledby="navbarDropdown">
                                 <li class="nav-item">
                                     <a
                                             class="nav-link btn btn-link px-3"
@@ -106,34 +114,41 @@
                                             href="{% url 'log' %}"
                                     >* Registro de horas</a>
                                 </li>
+                                <li class="nav-item">
+                                    <a
+                                            class="nav-link btn btn-link px-3"
+                                            role="button"
+                                            href="{% url 'log/import' %}"
+                                    >* Registro de horas masivo</a>
+                                </li>
 
-                            </ul>
-                        </li>
-                        <li class="nav-item">
+                            </div>
+                        </div>
+                        <div class="nav-item">
                             <a
-                                    class="btn btn-danger me-3"
+                                    class="btn btn-danger me-3 text-white"
                                     role="button"
                                     href="{% url 'logout' %}"
                             >Cerrar Sesión</a>
-                        </li>
+                        </div>
                     {% else %}
-                        <li class="nav-item">
+                        <div class="nav-item">
                             <a
-                                    class="btn btn-primary me-3"
+                                    class="btn btn-primary me-3 text-white"
                                     role="button"
                                     href="{% url 'login' %}"
                             >Login</a>
-                        </li>
+                        </div>
                     {% endif %}
-                    <li class="nav-item">
-                        <a
+                    <div class="nav-item">
+                        <div
                                 class="nav-link btn btn-dark px-3"
                                 href="https://github.com/mdbootstrap/mdb-ui-kit"
                                 role="button"
                         ><i class="fab fa-github"></i
-                        ></a>
-                    </li>
-                </ul>
+                        ></div>
+                    </div>
+                </div>
             </div>
         </div>
         <!-- Collapsible wrapper -->
@@ -150,123 +165,10 @@
 
 <!-- Footer -->
 <footer class="bg-dark text-center text-white">
-    <!-- Grid container -->
-    <div class="container p-4">
-        <!-- Section: Social media -->
-        <section class="mb-4">
-            <!-- Facebook -->
-            <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"
-            ><i class="fab fa-facebook-f"></i
-            ></a>
-
-            <!-- Twitter -->
-            <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"
-            ><i class="fab fa-twitter"></i
-            ></a>
-
-            <!-- Google -->
-            <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"
-            ><i class="fab fa-google"></i
-            ></a>
-
-            <!-- Instagram -->
-            <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"
-            ><i class="fab fa-instagram"></i
-            ></a>
-
-            <!-- Linkedin -->
-            <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"
-            ><i class="fab fa-linkedin-in"></i
-            ></a>
-
-            <!-- Github -->
-            <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"
-            ><i class="fab fa-github"></i
-            ></a>
-        </section>
-        <!-- Section: Social media -->
-
-        <!-- Section: Form -->
-        <section class="">
-            <form action="">
-                <!--Grid row-->
-                <div class="row d-flex justify-content-center">
-                    <!--Grid column-->
-                    <div class="col-auto">
-                        <p class="pt-2">
-                            <strong>Crear una cuenta</strong>
-                        </p>
-                    </div>
-                    <!--Grid column-->
-
-                    <!--Grid column-->
-                    <div class="col-md-5 col-12">
-                        <!-- Email input -->
-                        <div class="form-outline form-white mb-4">
-                            <input type="email" id="form5Example21" class="form-control"/>
-                            <label class="form-label" for="form5Example21">Correo electronico</label>
-                        </div>
-                    </div>
-                    <!--Grid column-->
-
-                    <!--Grid column-->
-                    <div class="col-auto">
-                        <!-- Submit button -->
-                        <button type="submit" class="btn btn-outline-light mb-4">
-                            Subscribe
-                        </button>
-                    </div>
-                    <!--Grid column-->
-                </div>
-                <!--Grid row-->
-            </form>
-        </section>
-        <!-- Section: Form -->
-
-        <!-- Section: Text -->
-        <section class="mb-4">
-            <p>
-                Sistema de registro de horas como apoyo a la gestion del proyecto y control de cada tiempo invertido en
-                el mismo
-            </p>
-        </section>
-        <!-- Section: Text -->
-
-        <!-- Section: Links -->
-        <section class="">
-            <!--Grid row-->
-            <div class="row justify-content-center">
-                <!--Grid column-->
-                <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
-                    <h5 class="text-uppercase">Links de interes</h5>
-
-                    <ul class="list-unstyled mb-0">
-                        <li>
-                            <a href="#!" class="text-white">Quienes somos</a>
-                        </li>
-                        <li>
-                            <a href="#!" class="text-white">Servicio al cliente</a>
-                        </li>
-                        <li>
-                            <a href="#!" class="text-white">Trabaja con nosotros</a>
-                        </li>
-                        <li>
-                            <a href="#!" class="text-white">Contactanos</a>
-                        </li>
-                    </ul>
-                </div>
-                <!--Grid column-->
-
-            </div>
-        </section>
-        <!-- Section: Links -->
-    </div>
-    <!-- Grid container -->
-
     <!-- Copyright -->
     <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
         © {% now 'Y' %} Copyright:
-        <a class="text-white" href="https://company.com/">Company.com</a>
+        <a class="text-white" href="https://www.indracompany.com">www.indracompany.com</a>
     </div>
     <!-- Copyright -->
 </footer>

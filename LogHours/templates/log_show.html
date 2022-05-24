@@ -1,57 +1,59 @@
 {% extends 'base.html' %}
 {% block title %}Registro de horas{% endblock %}
 {% block content %}
-    <div class="container p-3 p-lg-3 p-md-3 p-sm-3 p-xl-3 ">
-        <div class="card text-center p-3 p-md-3 p-sm-3 p-xl-3">
-            <h2 class="card-header">Mi Registro de horas</h2>
+    <div class="    ">
+        <div class="card bg-dark text-center p-3 p-md-3 p-sm-3 p-xl-3">
+            <h1 class="card-header font-weight-bold">Mi Registro de horas</h1>
             <div class="card-body justify-content-center">
-            <div class="table-wrapper-scroll-y my-custom-scrollbar">
-                <table class="table table-responsive table-striped mb-0">
-                    <thead class="table-dark">
-                    <tr>
-                        <th scope="col">ID</th>
-                        <th scope="col">Actividad</th>
-                        <th scope="col">Proyecto</th>
-                        <th scope="col">Prioridad</th>
-                        <th scope="col">Hora laboral</th>
-                        <th scope="col">Extras</th>
-                        <th scope="col">Autor</th>
-                        <th scope="col">Fecha registro/actualización</th>
-                        <th scope="col">Acciones</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    {% for log in logHours %}
+                <div class="table-wrapper-scroll-y my-custom-scrollbar">
+                    <table class="table table-responsive table-striped mb-0">
+                        <thead class="table-dark">
                         <tr>
-                            <td >{{ log.id }}</td>
-                            <td>{{ log.dsActivity }}</td>
-                            <td>{{ log.project }}</td>
-                            <td>{{ log.priority }}</td>
-                            <td>{{ log.nmBusinessHour }}</td>
-                            <td>{{ log.nmNoBusinessHour }}</td>
-                            <td>{{ log.author }}</td>
-                            <td>{{ log.date }}</td>
-                            <td>
-                                 <a
-                                    class="btn btn-primary me-3"
-                                    role="button"
-                                    href="edit/{{ log.id }}"
-                                 ><i class="fa fa-edit">Editar</i></a>
-                                <a
-                                    class="btn btn-danger me-3"
-                                    role="button"
-                                    href="delete/{{ log.id }}"
-                                 ><i class="fas fa-times">Borrar</i></a>
-                            </td>
+                            <th scope="col">ID</th>
+                            <th scope="col">Actividad</th>
+                            <th scope="col">Proyecto</th>
+                            <th scope="col">Prioridad</th>
+                            <th scope="col">Hora laboral</th>
+                            <th scope="col">Extras</th>
+                            <th scope="col">Autor</th>
+                            <th scope="col">Fecha registro/actualización</th>
+                            <th scope="col">Acciones</th>
                         </tr>
-                    {% endfor %}
-                    </tbody>
-                </table>
-                <br>
-                <br>
-                <div style="text-align: center;"><a href="/log" class="btn btn-primary">+ Crear nuevo registro de
-                    horas</a></div>
+                        </thead>
+                        <tbody>
+                        {% for log in logHours %}
+                            <tr>
+                                <td>{{ log.id }}</td>
+                                <td>{{ log.dsActivity }}</td>
+                                <td>{{ log.project }}</td>
+                                <td>{{ log.priority }}</td>
+                                <td>{{ log.nmBusinessHour }}</td>
+                                <td>{{ log.nmNoBusinessHour }}</td>
+                                <td>{{ log.author }}</td>
+                                <td>{{ log.date }}</td>
+                                <td>
+                                    <a
+                                            class="btn btn-primary me-3 text-white"
+                                            role="button"
+                                            href="edit/{{ log.id }}"
+                                    ><i class="fa fa-edit">Editar</i></a>
+                                    <a
+                                            class="btn btn-danger me-3 text-white"
+                                            role="button"
+                                            href="delete/{{ log.id }}"
+                                    ><i class="fas fa-times">Borrar</i></a>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+
+                </div>
             </div>
+            <div style="text-align: center;">
+                <a href="/log" class="btn btn-primary text-white m-1">+ Crear nuevo registro de horas</a>
+                <a href="/log/import" class="btn btn-dark text-white m-1"
+                   title="Cargar archivo">+ Cargar archivo</a>
             </div>
         </div>
     </div>

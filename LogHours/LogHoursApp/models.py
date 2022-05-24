@@ -62,7 +62,7 @@ class Projects(models.Model):
                                      help_text="Ingrese nombre del proyecto máximo 45 caracteres")
     owner = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name="Dueño Proyecto")
     priority = models.ForeignKey(Priorities, on_delete=models.CASCADE, verbose_name="Prioridad")
-    status = models.OneToOneField(Statuses, on_delete=models.CASCADE, verbose_name="Estado")
+    status = models.ForeignKey(Statuses, on_delete=models.CASCADE, verbose_name="Estado")
 
     def __str__(self):
         return self.dsNameProject
@@ -83,7 +83,7 @@ class LogHours(models.Model):
                                            help_text="Ingrese hora no laboral maximo 8 caracteres")
     project = models.ForeignKey(Projects, on_delete=models.CASCADE, verbose_name="Proyecto")
     author = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name="Usuario")
-    date = models.DateTimeField(auto_now=True, blank=True, verbose_name="Fecha registro",
+    date = models.DateTimeField(blank=True, verbose_name="Fecha registro",
                                 help_text="Ingresa la fecha de registro/actualización")
 
     class Meta:

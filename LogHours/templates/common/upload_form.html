@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block title %}Import file{% endblock %}
+
+{% block content %}
+
+    {% if form.errors %}
+        <p style="color: red;">
+            Please correct the error{{ form.errors|pluralize }} below.
+        </p>
+    {% endif %}
+    <div class="container p-3 p-lg-3 p-md-3 p-sm-3 p-xl-3 ">
+        <div class="card bg-dark text-center p-3 p-md-3 p-sm-3 p-xl-3">
+            <h1 class="card-header font-weight-bold">Carga masiva registro de horas</h1>
+            <div class="card-body justify-content-center">
+                <form action="" enctype="multipart/form-data" method="post">
+                    <table>
+                        {{ form.as_table }}
+                    </table>
+                    {% csrf_token %}
+                    <br>
+
+                    <a href="/log" class="btn btn-info text-white m-1"
+                       title="Regresar">Regresar</a>
+                    <button type="submit" class="btn btn-primary m-1">Cargar</button>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+

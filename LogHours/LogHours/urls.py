@@ -14,10 +14,9 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.contrib.staticfiles.storage import staticfiles_storage
 from django.urls import path, include
 from LogHoursApp import views
-from django.views.generic.base import TemplateView, RedirectView
+from django.views.generic.base import TemplateView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -29,6 +28,7 @@ urlpatterns = [
     path('log/edit/<int:id>', views.edit, name='log/edit'),
     path('log/edit/update/<int:id>', views.update, name='log/update'),
     path('log/delete/<int:id>', views.destroy, name='log/delete'),
+    path('log/import/', views.import_data, name="log/import"),
 ]
 
 admin.site.site_header = 'Registro de horas'
