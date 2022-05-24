@@ -1,4 +1,4 @@
-# **log-hours app v1.1.0**
+# **log-hours app v1.1.1**
 Aplicación que administra el Registro de horas
 de un proyecto como apoyo a la gestión del mismo. Este es
 el repositorio [log-hours](https://github.com/DeveloperSenior/log-hours.git).
